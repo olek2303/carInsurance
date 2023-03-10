@@ -1,5 +1,6 @@
 package GUI;
 
+import core.calculator;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,10 +36,17 @@ public class FormGUI extends JFrame{
         panel.add(button, BorderLayout.CENTER);
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         add(panel);
-
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                String loginGet = login.getText();
+                login.setText(null);
+                if(calculator.validateLogin(loginGet)) {
+                    System.out.println("Login correct");
+                    setVisible(false);
+                }
+                else {
+                    JOptionPane.showMessageDialog(getComponent(0), "Your login has to have more than 3 letters. Try again.");
+                }
             }
         });
 
