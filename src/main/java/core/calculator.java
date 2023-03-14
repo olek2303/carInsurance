@@ -9,6 +9,7 @@ public class calculator {
     public static String carType = null; // type of car for example SUV, Compact, Sedan, Cabrio
     public static String carBrand = null; // for example Citroen, Ford, Audi, BMW
     public static String carModel = null;
+    public static String carGeneration = null; // generation of the car I, II, III
     public static boolean gasDesiel; // false - diesel, true - gas
     public static float engineCapacity; // engine capacity - for example 1.1, 2.0, 3.0, 2.8
     public static byte amountOfDoors; // amount of door in the car - 3,5
