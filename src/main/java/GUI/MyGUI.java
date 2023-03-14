@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class MyGUI extends JFrame {
     public static FormGUI form = new FormGUI();
@@ -28,14 +30,15 @@ public class MyGUI extends JFrame {
         text.setForeground(Color.WHITE);
         text.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
 
-        button.setBounds(100,500,95,30);
+        button.setPreferredSize(new Dimension(150,30));
+        button.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
         button.setBackground(Color.GREEN);
 
         label.setForeground(Color.WHITE);
         label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
         panel.add(Box.createRigidArea(new Dimension(1000,100)));
         panel.add(label, BorderLayout.CENTER);
-        panel.add(Box.createRigidArea(new Dimension(1000,100)));
+        panel.add(Box.createRigidArea(new Dimension(1000,50)));
         panel.add(text, BorderLayout.CENTER);
         panel.add(Box.createRigidArea(new Dimension(1000,5)));
         panel.add(login, BorderLayout.CENTER);
@@ -45,6 +48,18 @@ public class MyGUI extends JFrame {
         panel.add(Box.createRigidArea(new Dimension(1000,10)));
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         add(panel);
+
+        login.addKeyListener(new KeyListener() {
+            public void keyTyped(KeyEvent e) {}
+            public void keyReleased(KeyEvent e) {}
+            public void keyPressed(KeyEvent e) {
+                int key = e.getKeyCode();
+                if(key == KeyEvent.VK_ENTER) {
+                    button.doClick();
+                }
+            }
+        });
+
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String loginGet = login.getText();
