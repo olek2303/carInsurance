@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MyGUI extends JFrame {
+    public static FormGUI form = new FormGUI();
     public MyGUI() {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Welcome to the car insurance app");
@@ -51,6 +52,8 @@ public class MyGUI extends JFrame {
                 if(calculator.validateLogin(loginGet)) {
                     System.out.println("Login correct");
                     panel.setVisible(false);
+                    form.setVisible(true);
+                    add(form);
                 }
                 else {
                     JOptionPane.showMessageDialog(getComponent(0), "Your login has to have more than 3 letters. Try again.");
