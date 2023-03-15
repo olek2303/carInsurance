@@ -58,11 +58,22 @@ public class FormGUI extends JPanel{
 
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                boolean completed = true;
+                ArrayList<String> data = new ArrayList<String>();
                 for(JComboBox box : boxes) {
                     if(box.getSelectedIndex() == -1) {
+                        completed = false;
                         JOptionPane.showMessageDialog(getComponent(0), "You didn't choose an option \n Do it now.");
                         break;
+                    } else {
+                        data.add((String) box.getSelectedItem());
                     }
+                }
+                if (completed) {
+                    calculator.carBrand = data.get(0);
+                    calculator.carModel = data.get(1);
+                    calculator.engineCapacity = Float.parseFloat(data.get(2));
+                    System.out.println("Added data about car to core.calculator " + data.get(0) + data.get(1) + data.get(2));
                 }
             }
         });
