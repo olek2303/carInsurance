@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class calculator {
     public static Date dateOfBirth = null; // drivers date of birth
+    public static int zipCode; //owners zip code
     public static boolean OCAC; // false - OC, ture - OC & AC
     public static String login = null; // drivers login
     public static String carType = null; // type of car for example SUV, Compact, Sedan, Cabrio
