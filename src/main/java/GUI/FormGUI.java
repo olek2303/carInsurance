@@ -82,6 +82,8 @@ public class FormGUI extends JPanel{
                     calculator.engineCapacity = Float.parseFloat(data.get(2));
                     calculator.carType = data.get(3);
                     System.out.println("Added data about car to core.calculator " + data.get(0) + data.get(1) + data.get(2) + data.get(3));
+                    setVisible(false);
+                    MyGUI.form1.setVisible(true);
                 }
             }
         });

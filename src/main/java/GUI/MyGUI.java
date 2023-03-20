@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 
 public class MyGUI extends JFrame {
     public static FormGUI form = new FormGUI();
+    public static PersonalGUI form1 = new PersonalGUI();
     public MyGUI() {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Welcome to the car insurance app");
