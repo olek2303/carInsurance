@@ -7,7 +7,7 @@ public class App {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MyGUI().setVisible(true);
+                new MyGUI().frame.setVisible(true);
             }
         });
     }

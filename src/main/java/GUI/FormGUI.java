@@ -9,11 +9,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FormGUI extends JPanel{
+public class FormGUI extends JPanel {
     private JLabel text = new JLabel("Data about Car:");
     private List<JComboBox> boxes = new ArrayList<JComboBox>();
     private List<JLabel> texts = new ArrayList<JLabel>();
     private JButton button = new JButton("Confirm");
+
     public FormGUI() {
         String brands[] = new String[] { "Audi", "BMW", "Alfa-Romeo" };
         String models[] = new String[] { "A5", "Seria 3", "Guilietta" };
@@ -31,7 +32,7 @@ public class FormGUI extends JPanel{
         boxes.add(new JComboBox(types));
         texts.add(new JLabel("Select brand: "));
         texts.add(new JLabel("Select model: "));
-        texts.add(new JLabel("Select engine: "));
+        texts.add(new JLabel("Select engine cm3: "));
         texts.add(new JLabel("Select car type: "));
 
         for(JLabel txt : texts) {
@@ -84,6 +85,7 @@ public class FormGUI extends JPanel{
                     System.out.println("Added data about car to core.calculator " + data.get(0) + data.get(1) + data.get(2) + data.get(3));
                     setVisible(false);
                     MyGUI.form1.setVisible(true);
+                    MyGUI.frame.add(MyGUI.form1);
                 }
             }
         });

@@ -9,21 +9,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class MyGUI extends JFrame {
+public class MyGUI {
     public static FormGUI form = new FormGUI();
     public static PersonalGUI form1 = new PersonalGUI();
+    public static JFrame frame = new JFrame();
+    public static JPanel panel = new JPanel();
+
     public MyGUI() {
-        JPanel panel = new JPanel();
+        form.setVisible(false);
+        form1.setVisible(false);
         JLabel label = new JLabel("Welcome to the car insurance app");
         JLabel text = new JLabel("Please enter your login to continue");
         JTextField login = new JTextField(20);
         JButton button = new JButton("Confirm");
 
-        setTitle("Car Insurance Calculator");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
-        setSize(1000,720);
-        getContentPane().setBackground(Color.BLACK);
+        frame.setTitle("Car Insurance Calculator");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setSize(1000,720);
+        frame.getContentPane().setBackground(Color.BLACK);
 
         panel.setBackground(Color.BLACK);
         //panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -48,7 +52,8 @@ public class MyGUI extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         panel.add(Box.createRigidArea(new Dimension(1000,10)));
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        add(panel);
+
+        frame.add(panel);
 
         login.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {}
@@ -69,10 +74,10 @@ public class MyGUI extends JFrame {
                     System.out.println("Login correct");
                     panel.setVisible(false);
                     form.setVisible(true);
-                    add(form);
+                    frame.add(form);
                 }
                 else {
-                    JOptionPane.showMessageDialog(getComponent(0), "Your login has to have more than 3 letters. Try again.");
+                    JOptionPane.showMessageDialog(frame.getComponent(0), "Your login has to have more than 3 letters. Try again.");
                 }
             }
         });
