@@ -1,5 +1,7 @@
 package GUI;
 
+import core.calculator;
+
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
@@ -8,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.text.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 public class PersonalGUI extends JPanel {
     private JLabel text = new JLabel("Personal Data: ");
@@ -38,7 +41,7 @@ public class PersonalGUI extends JPanel {
         List<JLabel> textList = new ArrayList<JLabel>();
         textList.add(new JLabel("Name: "));
         textList.add(new JLabel("Surname: "));
-        textList.add(new JLabel("Date of birth: "));
+        textList.add(new JLabel("Date of birth (yyyy.MM.dd): "));
         textList.add(new JLabel("Zip Code: "));
 
         for(JLabel txt : textList) {
@@ -73,7 +76,11 @@ public class PersonalGUI extends JPanel {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String z = dateTextField.getText();
+                if (z.length() > 0) {
+                    System.out.println("Alles klar with date " + z);
+                    calculator.dateOfBirth = dateTextField.getText();
+                }
             }
         });
     }

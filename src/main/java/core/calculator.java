@@ -1,12 +1,9 @@
 package core;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class calculator {
-    public static Date dateOfBirth = null; // drivers date of birth
+    public static String dateOfBirth = null; // drivers date of birth
     public static int zipCode; //owners zip code
     public static String city = null;
     public static boolean maleFemale; // false - male, true - female
@@ -37,18 +34,6 @@ public class calculator {
             return false;
         }
     }
-
-    public static boolean validateDate(String z) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            dateOfBirth = df.parse(z);
-        } catch (ParseException e) {
-            dateOfBirth = null;
-            return false;
-        }
-        return true;
-    }
-
     public static boolean validateZipCode(String z) {
         int zip;
         try {
