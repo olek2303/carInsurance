@@ -19,6 +19,7 @@ public class PersonalGUI extends JPanel {
     private JFormattedTextField dateTextField = new JFormattedTextField(new SimpleDateFormat("yyyy.MM.dd"));
     private JFormattedTextField zipCode= new JFormattedTextField(createFormatter("#####"));
     private JButton button = new JButton("Confirm");
+    private JTextField cityField = new JTextField(20);
 
     protected MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;
@@ -43,6 +44,7 @@ public class PersonalGUI extends JPanel {
         textList.add(new JLabel("Surname: "));
         textList.add(new JLabel("Date of birth (yyyy.MM.dd): "));
         textList.add(new JLabel("Zip Code: "));
+        textList.add(new JLabel("City: "));
 
         for(JLabel txt : textList) {
             txt.setForeground(Color.WHITE);
@@ -70,6 +72,9 @@ public class PersonalGUI extends JPanel {
         add(Box.createRigidArea(new Dimension(1000,10)));
         add(textList.get(3));
         add(zipCode);
+        add(Box.createRigidArea(new Dimension(1000,10)));
+        add(textList.get(4));
+        add(cityField);
         add(Box.createRigidArea(new Dimension(1000,10)));
         add(button);
 
