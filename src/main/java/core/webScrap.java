@@ -1,43 +1,30 @@
 package core;
 
-import org.htmlunit.html.DomText;
-import org.htmlunit.html.HtmlPage;
-import org.htmlunit.WebClient;
-
+import org.jsoup.*;
+import org.jsoup.nodes.Document;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.jsoup.nodes.Element;
+import org.jsoup.select.*;
 
 public class webScrap {
-    private static String url = "https://www.autocentrum.pl/dane-techniczne/";
-    private static WebClient client = new WebClient();
-
     public static void main(String[] args) throws IOException {
-        String z = "";
-        List<String> s  = getInfoBrands(z);
+        getBrandsModel();
     }
 
-    public static List<String> getInfoBrands(String b) throws IOException {
-        HtmlPage page = client.getPage(url);
-        client.getOptions().setCssEnabled(false);
-        client.getOptions().setJavaScriptEnabled(false);
-        String xpath = "//span[@class='make']";
-        List<DomText> brands = page.getByXPath(xpath);
-        List<String> s = new ArrayList<>();
-        for (DomText dt : brands) {
-            String text = dt.toString();
-            if(text != null && text.length() > 0) {
-                if(Character.isDigit(text.charAt(0))) {
-                    s.add(text);
-                    System.out.println(text);
-                }
-            }
+    public static void getBrandsModel() throws IOException {
+        String url = "https://www.autocentrum.pl/dane-techniczne/";
+        Document document = Jsoup.connect(url)
+                .userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
+                .timeout(5000)
+                .cookie("cookiename", "val234")
+                .referrer("https://google.com")
+                .get();
+
+        Elements brands = document.select("div.popular-name");
+        for(Element e : brands.select("a.make")) {
+            String s = e.select("span").text();
+            System.out.println(s);
         }
-        url += (b + "/");
-        return s;
-    }
-
-    public static void getInfoModel() {
-
     }
 }
