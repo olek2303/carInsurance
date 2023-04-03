@@ -6,18 +6,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+import core.webScrap;
 
 public class FormGUI extends JPanel {
     private JLabel text = new JLabel("Data about Car:");
-    private List<JComboBox> boxes = new ArrayList<JComboBox>();
-    private List<JLabel> texts = new ArrayList<JLabel>();
+    private List<JComboBox> boxes = new Vector<JComboBox>();
+    private List<JLabel> texts = new Vector<JLabel>();
     private JButton button = new JButton("Confirm");
 
     public FormGUI() {
-        String brands[] = new String[] { "Audi", "BMW", "Alfa-Romeo" };
-        String models[] = new String[] { "A5", "Seria 3", "Guilietta" };
+        Vector<String> brands;
+        Vector<String> models;
+        try {
+             brands = webScrap.getBrandsModel();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String m[] = new String[] { "firstly choose a brand" };
         String engines[] = new String[] { "2.0", "1.1", "1.8", "2.5" };
         String types[] = new String[] { "hatchback", "sedan", "kombi", "SUV", "cabrio" };
 
@@ -27,7 +36,8 @@ public class FormGUI extends JPanel {
         add(Box.createRigidArea(new Dimension(1000,50)));
 
         boxes.add(new JComboBox(brands));
-        boxes.add(new JComboBox(models));
+        boxes.add(new JComboBox(m));
+        DefaultComboBoxModel cmbxModel = (DefaultComboBoxModel) boxes.get(1).getModel();
         boxes.add(new JComboBox(engines));
         boxes.add(new JComboBox(types));
         texts.add(new JLabel("Select brand: "));
@@ -63,6 +73,21 @@ public class FormGUI extends JPanel {
         add(boxes.get(3), BorderLayout.EAST);
         add(Box.createRigidArea(new Dimension(1000,5)));
         add(button, BorderLayout.EAST);
+
+        boxes.get(0).addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String chosenBrand = (String) boxes.get(0).getSelectedItem();
+                System.out.println(chosenBrand);
+                try {
+                    boxes.get(1).removeAllItems();
+                    Vector<String> models = webScrap.getModels(chosenBrand);
+                    cmbxModel.addAll(models);
+                    boxes.get(1).setModel(cmbxModel);
+                } catch (IOException f) {
+                    throw new RuntimeException(f);
+                }
+            }
+        });
 
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
