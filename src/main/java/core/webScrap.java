@@ -10,7 +10,9 @@ import org.jsoup.select.*;
 
 public class webScrap {
     public static void main(String[] args) throws IOException {
-        Vector<String> b = getModels("volvo");
+        Vector<String> b = getGenerations("audi", "a3");
+        Vector<String> b2 = getType("audi", "a3", "8l");
+        Vector<String> b1 = getEngines("audi", "a3", "hatchback", "8l");
     }
 
     public static Vector<String> getBrandsModel() throws IOException {
@@ -47,5 +49,62 @@ public class webScrap {
         }
         System.out.println(m.size());
         return m;
+    }
+
+    public static Vector<String> getGenerations(String brand, String model) throws IOException {
+        String url = "https://www.autocentrum.pl/dane-techniczne/";
+        url = url + brand + "/" + model + "/";
+        Document doc = Jsoup.connect(url)
+                .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36")
+                .get();
+        Elements generations = doc.select("a.car-selector-box");
+        Vector<String> g = new Vector<>();
+        for(Element e : generations) {
+            String s = e.select("h2").text();
+            s = s.replaceAll("\\s.*", "").toLowerCase();
+            System.out.println(s);
+            g.add(s);
+        }
+        System.out.println("Generations: " + g.size());
+        return g;
+    }
+
+    public static Vector<String> getType(String brand, String model, String gen) throws IOException {
+        String url = "https://www.autocentrum.pl/dane-techniczne/";
+        url = url + brand + "/" + model + "/" + gen + "/";
+        Document doc = Jsoup.connect(url)
+                .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36")
+                .get();
+        Elements generations = doc.select("a.car-selector-box");
+        Vector<String> e = new Vector<>();
+        for(Element el : generations) {
+            String s = el.select("h2.name-of-the-car").text();
+            s = s.replaceAll("\\p{P}.*","").toLowerCase();
+            s = s.replaceAll(" ", "-");
+            s = s.substring(0,s.length()-1);
+            System.out.println(s);
+            e.add(s);
+        }
+        System.out.println("Types: " + e.size());
+        return e;
+    }
+
+    public static Vector<String> getEngines(String brand, String model, String type, String gen) throws IOException {
+        String url = "https://www.autocentrum.pl/dane-techniczne/";
+        if(type != null)
+            type = type + "/";
+        url = url + brand + "/" + model + "/" + gen + "/" + type ;
+        Document doc = Jsoup.connect(url)
+                .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36")
+                .get();
+        Elements generations = doc.select("a.engine-link");
+        Vector<String> e = new Vector<>();
+        for(Element el : generations) {
+            String s = el.text();
+            System.out.println(s);
+            e.add(s);
+        }
+        System.out.println("Engines: " + e.size());
+        return e;
     }
 }
