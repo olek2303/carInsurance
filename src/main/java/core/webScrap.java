@@ -47,7 +47,7 @@ public class webScrap {
             m.add(s);
             //System.out.println(s);
         }
-        System.out.println(m.size());
+        //System.out.println(m.size());
         return m;
     }
 
@@ -62,10 +62,10 @@ public class webScrap {
         for(Element e : generations) {
             String s = e.select("h2").text();
             s = s.replaceAll("\\s.*", "").toLowerCase();
-            System.out.println(s);
+            //System.out.println(s);
             g.add(s);
         }
-        System.out.println("Generations: " + g.size());
+        //System.out.println("Generations: " + g.size());
         return g;
     }
 
@@ -82,10 +82,10 @@ public class webScrap {
             s = s.replaceAll("\\p{P}.*","").toLowerCase();
             s = s.replaceAll(" ", "-");
             s = s.substring(0,s.length()-1);
-            System.out.println(s);
+            //System.out.println(s);
             e.add(s);
         }
-        System.out.println("Types: " + e.size());
+       // System.out.println("Types: " + e.size());
         return e;
     }
 
@@ -101,10 +101,10 @@ public class webScrap {
         Vector<String> e = new Vector<>();
         for(Element el : generations) {
             String s = el.text();
-            System.out.println(s);
+            //System.out.println(s);
             e.add(s);
         }
-        System.out.println("Engines: " + e.size());
+        //System.out.println("Engines: " + e.size());
         return e;
     }
 }

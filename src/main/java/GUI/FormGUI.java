@@ -20,13 +20,11 @@ public class FormGUI extends JPanel {
 
     public FormGUI() {
         Vector<String> brands;
-        Vector<String> models;
         try {
              brands = webScrap.getBrandsModel();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String m[] = new String[] { "firstly choose a brand" };
         String engines[] = new String[] { "2.0", "1.1", "1.8", "2.5" };
         String types[] = new String[] { "hatchback", "sedan", "kombi", "SUV", "cabrio" };
 
@@ -36,14 +34,17 @@ public class FormGUI extends JPanel {
         add(Box.createRigidArea(new Dimension(1000,50)));
 
         boxes.add(new JComboBox(brands));
-        boxes.add(new JComboBox(m));
+        boxes.add(new JComboBox()); //models
         DefaultComboBoxModel cmbxModel = (DefaultComboBoxModel) boxes.get(1).getModel();
-        boxes.add(new JComboBox(engines));
-        boxes.add(new JComboBox(types));
+        boxes.add(new JComboBox()); //generations
+        DefaultComboBoxModel cmbxGen = (DefaultComboBoxModel) boxes.get(2).getModel();
+        boxes.add(new JComboBox(types)); //types
+        boxes.add(new JComboBox(engines)); //engines
         texts.add(new JLabel("Select brand: "));
         texts.add(new JLabel("Select model: "));
-        texts.add(new JLabel("Select engine cm3: "));
+        texts.add(new JLabel("Select generation: "));
         texts.add(new JLabel("Select car type: "));
+        texts.add(new JLabel("Select engine cm3: "));
 
         for(JLabel txt : texts) {
             txt.setForeground(Color.WHITE);
@@ -59,18 +60,11 @@ public class FormGUI extends JPanel {
         button.setBackground(Color.GREEN);
 
         add(text, BorderLayout.CENTER);
-        add(Box.createRigidArea(new Dimension(1000,10)));
-        add(texts.get(0));
-        add(boxes.get(0), BorderLayout.EAST);
-        add(Box.createRigidArea(new Dimension(1000,5)));
-        add(texts.get(1));
-        add(boxes.get(1), BorderLayout.EAST);
-        add(Box.createRigidArea(new Dimension(1000,5)));
-        add(texts.get(2));
-        add(boxes.get(2), BorderLayout.EAST);
-        add(Box.createRigidArea(new Dimension(1000,5)));
-        add(texts.get(3));
-        add(boxes.get(3), BorderLayout.EAST);
+        for (int i = 0; i < boxes.size(); i++) {
+            add(Box.createRigidArea(new Dimension(1000,10)));
+            add(texts.get(i));
+            add(boxes.get(i), BorderLayout.EAST);
+        }
         add(Box.createRigidArea(new Dimension(1000,5)));
         add(button, BorderLayout.EAST);
 
@@ -83,6 +77,22 @@ public class FormGUI extends JPanel {
                     Vector<String> models = webScrap.getModels(chosenBrand);
                     cmbxModel.addAll(models);
                     boxes.get(1).setModel(cmbxModel);
+                } catch (IOException f) {
+                    throw new RuntimeException(f);
+                }
+            }
+        });
+
+        boxes.get(1).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String chosenModel = (String) boxes.get(1).getSelectedItem();
+                System.out.println(chosenModel);
+                try {
+                    boxes.get(2).removeAllItems();
+                    Vector<String> types = webScrap.getGenerations((String) boxes.get(0).getSelectedItem(), chosenModel);
+                    cmbxGen.addAll(types);
+                    boxes.get(2).setModel(cmbxGen);
                 } catch (IOException f) {
                     throw new RuntimeException(f);
                 }
