@@ -26,7 +26,6 @@ public class FormGUI extends JPanel {
             throw new RuntimeException(e);
         }
         String engines[] = new String[] { "2.0", "1.1", "1.8", "2.5" };
-        String types[] = new String[] { "hatchback", "sedan", "kombi", "SUV", "cabrio" };
 
         setBackground(Color.BLACK);
         text.setForeground(Color.WHITE);
@@ -38,8 +37,10 @@ public class FormGUI extends JPanel {
         DefaultComboBoxModel cmbxModel = (DefaultComboBoxModel) boxes.get(1).getModel();
         boxes.add(new JComboBox()); //generations
         DefaultComboBoxModel cmbxGen = (DefaultComboBoxModel) boxes.get(2).getModel();
-        boxes.add(new JComboBox(types)); //types
-        boxes.add(new JComboBox(engines)); //engines
+        boxes.add(new JComboBox()); //types
+        DefaultComboBoxModel cmbxType = (DefaultComboBoxModel) boxes.get(3).getModel();
+        boxes.add(new JComboBox()); //engines
+        DefaultComboBoxModel cmbxEng = (DefaultComboBoxModel) boxes.get(4).getModel();
         texts.add(new JLabel("Select brand: "));
         texts.add(new JLabel("Select model: "));
         texts.add(new JLabel("Select generation: "));
@@ -93,6 +94,41 @@ public class FormGUI extends JPanel {
                     Vector<String> types = webScrap.getGenerations((String) boxes.get(0).getSelectedItem(), chosenModel);
                     cmbxGen.addAll(types);
                     boxes.get(2).setModel(cmbxGen);
+                } catch (IOException f) {
+                    throw new RuntimeException(f);
+                }
+            }
+        });
+
+        boxes.get(2).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String chosenModel = (String) boxes.get(1).getSelectedItem();
+                System.out.println(chosenModel);
+                try {
+                    boxes.get(3).removeAllItems();
+                    Vector<String> gases = webScrap.getType((String) boxes.get(0).getSelectedItem(), chosenModel, (String)boxes.get(2).getSelectedItem());
+                    cmbxType.addAll(gases);
+                    boxes.get(3).setModel(cmbxType);
+                } catch (IOException f) {
+                    throw new RuntimeException(f);
+                }
+            }
+        });
+
+        boxes.get(3).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String chosenModel = (String) boxes.get(1).getSelectedItem();
+                System.out.println(chosenModel);
+                try {
+                    boxes.get(4).removeAllItems();
+                    Vector<String> eng = webScrap.getEngines((String) boxes.get(0).getSelectedItem(),
+                            chosenModel,
+                            (String)boxes.get(3).getSelectedItem(),
+                            (String)boxes.get(2).getSelectedItem());
+                    cmbxEng.addAll(eng);
+                    boxes.get(4).setModel(cmbxEng);
                 } catch (IOException f) {
                     throw new RuntimeException(f);
                 }
