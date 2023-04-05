@@ -93,6 +93,8 @@ public class FormGUI extends JPanel {
                     boxes.get(2).removeAllItems();
                     Vector<String> types = webScrap.getGenerations((String) boxes.get(0).getSelectedItem(), chosenModel);
                     cmbxGen.addAll(types);
+                    if (types.size() < 1)
+                        cmbxGen.addElement("null");
                     boxes.get(2).setModel(cmbxGen);
                 } catch (IOException f) {
                     throw new RuntimeException(f);
@@ -109,6 +111,8 @@ public class FormGUI extends JPanel {
                     boxes.get(3).removeAllItems();
                     Vector<String> gases = webScrap.getType((String) boxes.get(0).getSelectedItem(), chosenModel, (String)boxes.get(2).getSelectedItem());
                     cmbxType.addAll(gases);
+                    if (gases.size() < 1)
+                        cmbxType.addElement("null");
                     boxes.get(3).setModel(cmbxType);
                 } catch (IOException f) {
                     throw new RuntimeException(f);
@@ -128,6 +132,8 @@ public class FormGUI extends JPanel {
                             (String)boxes.get(3).getSelectedItem(),
                             (String)boxes.get(2).getSelectedItem());
                     cmbxEng.addAll(eng);
+                    if(eng.size() < 1)
+                        cmbxEng.addElement("null");
                     boxes.get(4).setModel(cmbxEng);
                 } catch (IOException f) {
                     throw new RuntimeException(f);
