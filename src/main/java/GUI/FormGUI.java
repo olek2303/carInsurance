@@ -157,8 +157,11 @@ public class FormGUI extends JPanel {
                 if (completed) {
                     calculator.carBrand = data.get(0);
                     calculator.carModel = data.get(1);
-                    calculator.engineCapacity = Float.parseFloat(data.get(2));
+                    calculator.carGeneration = data.get(2);
                     calculator.carType = data.get(3);
+                    String s = data.get(4);
+                    s = s.replaceAll("\\s.*", "");
+                    calculator.engineCapacity = Float.parseFloat(s);
                     System.out.println("Added data about car to core.calculator " + data.get(0) + data.get(1) + data.get(2) + data.get(3));
                     setVisible(false);
                     MyGUI.form1.setVisible(true);
