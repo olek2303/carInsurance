@@ -160,9 +160,12 @@ public class FormGUI extends JPanel {
                     calculator.carGeneration = data.get(2);
                     calculator.carType = data.get(3);
                     String s = data.get(4);
-                    s = s.replaceAll("\\s.*", "");
-                    calculator.engineCapacity = Float.parseFloat(s);
-                    System.out.println("Added data about car to core.calculator " + data.get(0) + data.get(1) + data.get(2) + data.get(3));
+                    if(s != null) {
+                        s = s.replaceAll("\\s.*", "");
+                        calculator.engineCapacity = Float.parseFloat(s);
+                    } else
+                        calculator.engineCapacity = 0.0F;
+                    System.out.println("Added data about car to core.calculator " + data.get(0) + data.get(1) + data.get(2) + data.get(3) + s);
                     setVisible(false);
                     MyGUI.form1.setVisible(true);
                     MyGUI.frame.add(MyGUI.form1);
