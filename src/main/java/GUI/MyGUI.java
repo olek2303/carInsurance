@@ -12,12 +12,14 @@ import java.awt.event.KeyListener;
 public class MyGUI {
     public static FormGUI form = new FormGUI();
     public static PersonalGUI form1 = new PersonalGUI();
+    public static AdditionalCarInfo form2 = new AdditionalCarInfo();
     public static JFrame frame = new JFrame();
     public static JPanel panel = new JPanel();
 
     public MyGUI() {
         form.setVisible(false);
         form1.setVisible(false);
+        form2.setVisible(false);
         JLabel label = new JLabel("Welcome to the car insurance app");
         JLabel text = new JLabel("Please enter your login to continue");
         JTextField login = new JTextField(20);

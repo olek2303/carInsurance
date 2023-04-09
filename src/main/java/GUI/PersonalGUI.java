@@ -81,11 +81,24 @@ public class PersonalGUI extends JPanel {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String z = dateTextField.getText();
-                if (z.length() > 0) {
-                    System.out.println("Alles klar with date " + z);
+                String birthinput = dateTextField.getText();
+                String cityinput = cityField.getText();
+                String zipinput = zipCode.getText();
+                String surnameinput = surname.getText();
+                String nameinput = name.getText();
+                if (birthinput.length() > 0) {
+                    System.out.println("Alles klar with date " + birthinput);
                     calculator.dateOfBirth = dateTextField.getText();
                 }
+                calculator.dateOfBirth = birthinput;
+                calculator.city = cityinput;
+                calculator.zipCode = zipinput;
+                calculator.surname = surnameinput;
+                calculator.name = nameinput;
+
+                setVisible(false);
+                MyGUI.form2.setVisible(true);
+                MyGUI.frame.add(MyGUI.form2);
             }
         });
     }
