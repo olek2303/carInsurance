@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -62,7 +63,13 @@ public class AdditionalCarInfo extends JPanel {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ArrayList<String> coll = new ArrayList<>();
+                /*  0 - amount of doors, 1 - counter status, 2 - km in year
+                    3 - years of ownership, 4 - years of oc, 5 - years without accident  */
+                for (JTextField i : intCollector) {
+                    coll.add(i.getText());
+                }
+                boolean oc = OCAC.isSelected(); // true - oc & ac, false - only oc
             }
         });
     }
