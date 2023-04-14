@@ -22,7 +22,7 @@ public class AdditionalCarInfo extends JPanel {
     private JToggleButton OCAC = new JToggleButton("Select OCAC (default OC): ");
     private List<JFormattedTextField> intCollector = new Vector<>();
     private List<JLabel> labels = new Vector<>();
-    private JTextField parking = new JTextField();
+    private JComboBox<String> parking = new JComboBox<>();
     private JButton button = new JButton("Confirm");
 
     public AdditionalCarInfo() {
@@ -64,6 +64,16 @@ public class AdditionalCarInfo extends JPanel {
             add(intCollector.get(i));
         }
 
+        add(Box.createRigidArea(new Dimension(1000,10)));
+        parking.addItem("Outdoor");
+        parking.addItem("Indoor");
+        parking.setSelectedIndex(-1);
+        JLabel t = new JLabel("Where the car parks: ");
+        t.setForeground(Color.WHITE);
+        t.setFont(new Font(MONOSPACED, PLAIN, 16));
+        add(t);
+        add(parking);
+
         button.setPreferredSize(new Dimension(150,30));
         button.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
         button.setBackground(Color.GREEN);
@@ -78,16 +88,7 @@ public class AdditionalCarInfo extends JPanel {
                 /*  0 - amount of doors, 1 - counter status, 2 - km in year
                     3 - years of ownership, 4 - years of oc, 5 - years without accident  */
                 for (JFormattedTextField i : intCollector) {
-                    int x;
-                    if(i.getText().contains(" ")) {
-                        String y = i.getText();
-                        y = y.replaceAll(" ", "");
-                        x = Integer.parseInt(y);
-                    }
-
-                    else
-                        x = Integer.parseInt(i.getText());
-                    coll.add(x);
+                    coll.add((int) i.getValue());
                 }
                 boolean oc = OCAC.isSelected(); // true - oc & ac, false - only oc
                 calculator.amountOfDoors = coll.get(0);
@@ -96,6 +97,11 @@ public class AdditionalCarInfo extends JPanel {
                 calculator.yearOfOwnership = coll.get(3);
                 calculator.yearsClientOC = coll.get(4);
                 calculator.yearOfOwnership = coll.get(5);
+                if(parking.getSelectedIndex() != -1)
+                    calculator.wherePark = (String) parking.getSelectedItem();
+                else
+                    throw new RuntimeException();
+                System.out.println("Additional Car info added to calculator.core");
             }
         });
     }
