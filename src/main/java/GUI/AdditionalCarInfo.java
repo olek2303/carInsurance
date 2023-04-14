@@ -3,9 +3,11 @@ package GUI;
 import core.calculator;
 
 import javax.swing.*;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -13,14 +15,23 @@ import java.util.Vector;
 import static java.awt.Font.*;
 
 public class AdditionalCarInfo extends JPanel {
+    private NumberFormat format = NumberFormat.getInstance();
+    private NumberFormatter formatter = new NumberFormatter(format);
+    JFormattedTextField field = new JFormattedTextField(formatter);
     private JLabel text = new JLabel("Additional Data About Car:");
     private JToggleButton OCAC = new JToggleButton("Select OCAC (default OC): ");
-    private List<JTextField> intCollector = new Vector<>();
+    private List<JFormattedTextField> intCollector = new Vector<>();
     private List<JLabel> labels = new Vector<>();
     private JTextField parking = new JTextField();
     private JButton button = new JButton("Confirm");
 
     public AdditionalCarInfo() {
+        formatter.setValueClass(Integer.class);
+        formatter.setMinimum(0);
+        formatter.setMaximum(Integer.MAX_VALUE);
+        formatter.setAllowsInvalid(false);
+        formatter.setCommitsOnValidEdit(true);
+
         setBackground(Color.BLACK);
         text.setForeground(Color.WHITE);
         text.setFont(new Font(SANS_SERIF, BOLD, 32));
@@ -31,7 +42,7 @@ public class AdditionalCarInfo extends JPanel {
         labels.add(new JLabel("Years of OC: "));
         labels.add(new JLabel("Years without accident: "));
         for(int i = 0; i < labels.size(); i++) {
-            intCollector.add(new JTextField());
+            intCollector.add(new JFormattedTextField(formatter));
         }
         JLabel text = new JLabel("Additional Data About Car");
         text.setForeground(Color.WHITE);
@@ -63,13 +74,28 @@ public class AdditionalCarInfo extends JPanel {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<String> coll = new ArrayList<>();
+                ArrayList<Integer> coll = new ArrayList<>();
                 /*  0 - amount of doors, 1 - counter status, 2 - km in year
                     3 - years of ownership, 4 - years of oc, 5 - years without accident  */
-                for (JTextField i : intCollector) {
-                    coll.add(i.getText());
+                for (JFormattedTextField i : intCollector) {
+                    int x;
+                    if(i.getText().contains(" ")) {
+                        String y = i.getText();
+                        y = y.replaceAll(" ", "");
+                        x = Integer.parseInt(y);
+                    }
+
+                    else
+                        x = Integer.parseInt(i.getText());
+                    coll.add(x);
                 }
                 boolean oc = OCAC.isSelected(); // true - oc & ac, false - only oc
+                calculator.amountOfDoors = coll.get(0);
+                calculator.counterStatus = coll.get(1);
+                calculator.kmInYear = coll.get(2);
+                calculator.yearOfOwnership = coll.get(3);
+                calculator.yearsClientOC = coll.get(4);
+                calculator.yearOfOwnership = coll.get(5);
             }
         });
     }
