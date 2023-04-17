@@ -36,13 +36,9 @@ public class calculator {
             return false;
         }
     }
-    public static boolean validateZipCode(String z) {
-        int zip;
-        try {
-            zip = Integer.parseInt(z);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
+
+    public static float calculateOC() {
+        float z = (float) Math.random();
+        return z;
     }
 }
