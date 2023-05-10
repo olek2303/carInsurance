@@ -17,6 +17,7 @@ public class calculator {
     public static String carModel = null;
     public static String serialNumber = null; // cars serial number
     public static String carGeneration = null; // generation of the car I, II, III
+    public static String carProdYear = null;
     public static boolean gasDesiel; // false - diesel, true - gas
     public static float engineCapacity; // engine capacity - for example 1.1, 2.0, 3.0, 2.8
     public static int amountOfDoors; // amount of door in the car - 3,5
