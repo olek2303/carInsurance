@@ -5,7 +5,7 @@ import java.util.Date;
 public class calculator {
     public static String name = null;
     public static String surname = null;
-    public static String dateOfBirth = "null"; // drivers date of birth
+    public static String dateOfBirth = null; // drivers date of birth
     public static String zipCode; //owners zip code
     public static String city = null;
     public static boolean maleFemale; // false - male, true - female

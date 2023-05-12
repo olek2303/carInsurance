@@ -103,6 +103,7 @@ public class AdditionalCarInfo extends JPanel {
                     throw new RuntimeException();
                 System.out.println("Additional Car info added to calculator.core");
                 setVisible(false);
+                MyGUI.dataCompleted = true;
                 MyGUI.form3.setVisible(true);
                 MyGUI.frame.add(MyGUI.form3);
             }
