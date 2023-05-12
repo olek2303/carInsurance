@@ -155,10 +155,10 @@ public class FormGUI extends JPanel {
                     }
                 }
                 if (completed) {
-                    calculator.carBrand = data.get(0);
-                    calculator.carModel = data.get(1);
-                    calculator.carGeneration = data.get(2);
-                    calculator.carType = data.get(3);
+                    MyGUI.c.carBrand = data.get(0);
+                    MyGUI.c.carModel = data.get(1);
+                    MyGUI.c.carGeneration = data.get(2);
+                    MyGUI.c.carType = data.get(3);
                     String s = data.get(4);
                     if(s != null) {
                         s = s.replaceAll("\\s.*", "");

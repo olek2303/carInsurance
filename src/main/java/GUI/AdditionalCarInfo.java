@@ -91,12 +91,12 @@ public class AdditionalCarInfo extends JPanel {
                     coll.add((int) i.getValue());
                 }
                 boolean oc = OCAC.isSelected(); // true - oc & ac, false - only oc
-                calculator.amountOfDoors = coll.get(0);
-                calculator.counterStatus = coll.get(1);
-                calculator.kmInYear = coll.get(2);
-                calculator.yearOfOwnership = coll.get(3);
-                calculator.yearsClientOC = coll.get(4);
-                calculator.yearOfOwnership = coll.get(5);
+                MyGUI.c.amountOfDoors = coll.get(0);
+                MyGUI.c.counterStatus = coll.get(1);
+                MyGUI.c.kmInYear = coll.get(2);
+                MyGUI.c.yearOfOwnership = coll.get(3);
+                MyGUI.c.yearsClientOC = coll.get(4);
+                MyGUI.c.yearOfOwnership = coll.get(5);
                 if(parking.getSelectedIndex() != -1)
                     calculator.wherePark = (String) parking.getSelectedItem();
                 else

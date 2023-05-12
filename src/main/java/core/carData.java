@@ -1,8 +1,10 @@
 package core;
 
+import GUI.MyGUI;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -23,6 +25,10 @@ public class carData {
     public static String wherePark; // indoor outdoor
     public static float yearsOfOC; // 5
     public static float yearsOfLastAccident; // 4
+
+    public static void main(String[] args) {
+        carData c = new carData(MyGUI.c);
+    }
 
     public static int countAttr(carData c) {
         Class<?> x = c.getClass();
@@ -160,6 +166,8 @@ public class carData {
         Date d = new Date();
         c.dateOfBirth = c.dateOfBirth.split("-")[0];
         int year = d.getYear();
+
+        System.out.println("Year: " + year + " date of birth: " + c.dateOfBirth + " division: ");
 
         this.age = Float.parseFloat(c.dateOfBirth) - (float) year;
         this.amountOfDrivers = c.amountOfDrivers;

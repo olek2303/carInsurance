@@ -90,11 +90,11 @@ public class PersonalGUI extends JPanel {
                     System.out.println("Alles klar with date " + birthinput);
                     calculator.dateOfBirth = dateTextField.getText();
                 }
-                calculator.dateOfBirth = birthinput;
-                calculator.city = cityinput;
-                calculator.zipCode = zipinput;
-                calculator.surname = surnameinput;
-                calculator.name = nameinput;
+                MyGUI.c.dateOfBirth = birthinput;
+                MyGUI.c.city = cityinput;
+                MyGUI.c.zipCode = zipinput;
+                MyGUI.c.surname = surnameinput;
+                MyGUI.c.name = nameinput;
 
                 setVisible(false);
                 MyGUI.form2.setVisible(true);

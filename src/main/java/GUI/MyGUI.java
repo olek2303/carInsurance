@@ -16,6 +16,7 @@ public class MyGUI {
     public static Result form3 = new Result();
     public static JFrame frame = new JFrame();
     public static JPanel panel = new JPanel();
+    public static calculator c = new calculator();
 
     public MyGUI() {
         form.setVisible(false);
