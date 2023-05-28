@@ -65,11 +65,11 @@ public class carData {
             }
         }
         Map<String, Double> cType = new HashMap<>() {{
-            put("suv", 1.7);
-            put("hatchback", 1.1);
-            put("sedan", 1.6);
-            put("kombi", 1.3);
-            put("cabrio", 1.5);
+            put("suv", 0.9);
+            put("hatchback", 0.2);
+            put("sedan", 0.8);
+            put("kombi", 0.4);
+            put("cabrio", 0.6);
         }};
         TreeMap<String, Integer> cGen = new TreeMap<>(){{
             put("X", 10);
@@ -85,41 +85,49 @@ public class carData {
                     if (Objects.equals(carBrand, "audi") || Objects.equals(carBrand, "bmw") || Objects.equals(carBrand, "porsche") ||
                             Objects.equals(carBrand, "land-rover") || Objects.equals(carBrand, "mercedes") ||
                             Objects.equals(carBrand, "lexus") || Objects.equals(carBrand, "tesla") || Objects.equals(carBrand, "jaguar"))
-                        carBrand = "20.0";
+                        carBrand = "0.9";
                     else if (Objects.equals(carBrand, "volvo") || Objects.equals(carBrand, "alfa-romeo") || Objects.equals(carBrand, "mini"))
-                        carBrand = "17.0";
+                        carBrand = "0.7";
                     else
-                        carBrand = "15.0";
+                        carBrand = "0.5";
                 }
                 case "carModel" -> {
-                    if (engineCap > 3.0) carModel = "15.0";
-                    else carModel = "12.0";
+                    if (engineCap > 3.0) carModel = "0.9";
+                    else carModel = "0.4";
                 }
                 case "carType" -> {
                     for (Map.Entry<String, Double> t : cType.entrySet()) {
                         if (t.getKey().equals(carType))
                             carType = Double.toString(t.getValue());
-                        else carType = "11.0";
+                        else carType = "0.3";
                     }
                 }
                 case "carGen" -> {
-                    if(carProdYear > 2000) carGen = "13.0";
-                    else if (carProdYear > 2010) carGen = "14.0";
-                    else if (carProdYear > 2015) carGen = "15.0";
-                    else if (carProdYear > 2020) carGen = "17.0";
-                    else carGen = "12.0";
+                    if(carProdYear > 2000 && carProdYear <= 2010) carGen = "0.3";
+                    else if (carProdYear > 2010 && carProdYear <= 2015) carGen = "0.5";
+                    else if (carProdYear > 2015 && carProdYear <= 2020) carGen = "0.7";
+                    else if (carProdYear > 2020) carGen = "0.9";
+                    else carGen = "0.2";
                 }
                 case "wherePark" -> {
                     if (wherePark == "indoor")
-                        wherePark = "11.0";
-                    else wherePark = "14.0";
+                        wherePark = "0.5";
+                    else wherePark = "0.9";
                 }
             }
         }
-        carProdYear /= 100;
-        kmInYear /= 100;
-        if(counterStatus < 10000) counterStatus /= 100;
-        else counterStatus /= 1000;
+        if(yearsOfOC < 10) yearsOfOC /= 10;
+        else yearsOfOC /= 100;
+        if(yearsOfLastAccident < 10) yearsOfLastAccident /= 10;
+        else yearsOfLastAccident /= 100;
+        amountOfDrivers /= 10;
+        age /= 100;
+        engineCap /= 10.0;
+        carProdYear /= 10000;
+        if (kmInYear < 10000) kmInYear /= 10000;
+        else kmInYear /= 100000;
+        if(counterStatus < 10000) counterStatus /= 100000;
+        else counterStatus /= 1000000;
         //presentAttr(c);
     }
 
