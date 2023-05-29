@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-public class App {
+public class App { //klasa uruchamia aplikacje
     public static void main(String[] args) throws IOException {
         EventQueue.invokeLater(new Runnable() {
             @Override

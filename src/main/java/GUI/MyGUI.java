@@ -9,7 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class MyGUI {
+public class MyGUI { //klasa poczatkowa, witajaca uzytkownika w aplikacji
+    //posiada instancje wszystkich potrzebnych obiektow do poprawnego wywolania aplikacji
     public static FormGUI form = new FormGUI();
     public static PersonalGUI form1 = new PersonalGUI();
     public static AdditionalCarInfo form2 = new AdditionalCarInfo();

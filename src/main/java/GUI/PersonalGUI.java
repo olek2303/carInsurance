@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
-public class PersonalGUI extends JPanel {
+public class PersonalGUI extends JPanel { //klasa pobierajace dane osobowe uzytkownika
     private JLabel text = new JLabel("Personal Data: ");
     private JTextField name = new JTextField(20);
     private JTextField surname = new JTextField(20);
@@ -80,7 +80,7 @@ public class PersonalGUI extends JPanel {
 
         button.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { //przekierowywanie podanych informacji do pliku ze wszystkimi danymi
                 String birthinput = dateTextField.getText();
                 String cityinput = cityField.getText();
                 String zipinput = zipCode.getText();

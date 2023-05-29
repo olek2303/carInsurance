@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Vector;
 import core.webScrap;
 
-public class FormGUI extends JPanel {
-    private JLabel text = new JLabel("Data about Car:");
-    private List<JComboBox> boxes = new Vector<JComboBox>();
-    private List<JLabel> texts = new Vector<JLabel>();
-    private JButton button = new JButton("Confirm");
+public class FormGUI extends JPanel { //klasa zawiera w sobie elementy z biblioteki javax swing
+    private JLabel text = new JLabel("Data about Car:"); //naglowek formularza zbierjacego informacje o samochodzie
+    private List<JComboBox> boxes = new Vector<JComboBox>(); //pola do przechwytywania danych
+    private List<JLabel> texts = new Vector<JLabel>(); //znaczniki do pol sluzacych do przechwytywania danych
+    private JButton button = new JButton("Confirm"); //przycisk potwierdzajacy
 
     public FormGUI() {
         NumberFormat format = NumberFormat.getInstance();
@@ -87,7 +87,7 @@ public class FormGUI extends JPanel {
         add(Box.createRigidArea(new Dimension(1000,5)));
         add(button, BorderLayout.EAST);
 
-        boxes.get(0).addActionListener(new ActionListener() {
+        boxes.get(0).addActionListener(new ActionListener() { //pobieranie danych dot. modelu wybranego samochodu ze strony https://auto-centrum.pl/
             public void actionPerformed(ActionEvent e) {
                 String chosenBrand = (String) boxes.get(0).getSelectedItem();
                 System.out.println(chosenBrand);
@@ -102,7 +102,7 @@ public class FormGUI extends JPanel {
             }
         });
 
-        boxes.get(1).addActionListener(new ActionListener() {
+        boxes.get(1).addActionListener(new ActionListener() { //pobieranie danych dot. typow samochodu danego modelu ze strony https://auto-centrum.pl/
             @Override
             public void actionPerformed(ActionEvent e) {
                 String chosenModel = (String) boxes.get(1).getSelectedItem();
@@ -120,7 +120,7 @@ public class FormGUI extends JPanel {
             }
         });
 
-        boxes.get(2).addActionListener(new ActionListener() {
+        boxes.get(2).addActionListener(new ActionListener() { //pobieranie danych dot. silnika danego modelu ze strony https://auto-centrum.pl/
             @Override
             public void actionPerformed(ActionEvent e) {
                 String chosenModel = (String) boxes.get(1).getSelectedItem();
@@ -138,7 +138,7 @@ public class FormGUI extends JPanel {
             }
         });
 
-        boxes.get(3).addActionListener(new ActionListener() {
+        boxes.get(3).addActionListener(new ActionListener() { //pobieranie danych dot. silnika ze strony https://auto-centrum.pl/
             @Override
             public void actionPerformed(ActionEvent e) {
                 String chosenModel = (String) boxes.get(1).getSelectedItem();
@@ -162,8 +162,8 @@ public class FormGUI extends JPanel {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 boolean completed = true;
-                ArrayList<String> data = new ArrayList<String>();
-                for(JComboBox box : boxes) {
+                ArrayList<String> data = new ArrayList<String>(); // lista do zebrania danych z pol typu JComboBox
+                for(JComboBox box : boxes) { //sprawdzanie poprawnosci wybranych konfiguracji
                     if(box.getSelectedIndex() == -1) {
                         completed = false;
                         JOptionPane.showMessageDialog(getComponent(0), "You didn't choose an option \n Do it now.");
@@ -172,7 +172,7 @@ public class FormGUI extends JPanel {
                         data.add((String) box.getSelectedItem());
                     }
                 }
-                if (completed) {
+                if (completed) { // przekierowywanie podanych informacji do pliku ze wszystkimi danymi
                     MyGUI.c.carBrand = data.get(0);
                     MyGUI.c.carModel = data.get(1);
                     MyGUI.c.carGeneration = data.get(2);
