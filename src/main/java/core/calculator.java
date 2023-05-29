@@ -5,7 +5,7 @@ import java.util.Date;
 public class calculator {
     public static String name = null;
     public static String surname = null;
-    public static String dateOfBirth = null; // drivers date of birth
+    public static String dateOfBirth = " 20 "; // drivers date of birth
     public static String zipCode; //owners zip code
     public static String city = null;
     public static boolean maleFemale; // false - male, true - female
@@ -17,7 +17,7 @@ public class calculator {
     public static String carModel = null;
     public static String serialNumber = null; // cars serial number
     public static String carGeneration = null; // generation of the car I, II, III
-    public static String carProdYear = null;
+    public static String carProdYear = " 20 ";
     public static boolean gasDesiel; // false - diesel, true - gas
     public static float engineCapacity; // engine capacity - for example 1.1, 2.0, 3.0, 2.8
     public static int amountOfDoors; // amount of door in the car - 3,5

@@ -171,9 +171,8 @@ public class carData {
     }
 
     public carData(calculator c) {
-        Date d = new Date();
-        c.dateOfBirth = c.dateOfBirth.split("-")[0];
-        int year = d.getYear();
+        c.dateOfBirth = c.dateOfBirth.split(".")[0];
+        int year = 2023;
 
         System.out.println("Year: " + year + " date of birth: " + c.dateOfBirth + " division: ");
 

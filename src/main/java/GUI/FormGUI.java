@@ -3,10 +3,12 @@ package GUI;
 import core.calculator;
 
 import javax.swing.*;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -19,6 +21,15 @@ public class FormGUI extends JPanel {
     private JButton button = new JButton("Confirm");
 
     public FormGUI() {
+        NumberFormat format = NumberFormat.getInstance();
+        NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setValueClass(Integer.class);
+        formatter.setMinimum(0);
+        formatter.setMaximum(Integer.MAX_VALUE);
+        formatter.setAllowsInvalid(false);
+        formatter.setCommitsOnValidEdit(true);
+
+
         Vector<String> brands;
         try {
              brands = webScrap.getBrandsModel();
@@ -41,11 +52,15 @@ public class FormGUI extends JPanel {
         DefaultComboBoxModel cmbxType = (DefaultComboBoxModel) boxes.get(3).getModel();
         boxes.add(new JComboBox()); //engines
         DefaultComboBoxModel cmbxEng = (DefaultComboBoxModel) boxes.get(4).getModel();
+
+        JFormattedTextField prod = new JFormattedTextField(formatter);
+
         texts.add(new JLabel("Select brand: "));
         texts.add(new JLabel("Select model: "));
         texts.add(new JLabel("Select generation: "));
         texts.add(new JLabel("Select car type: "));
         texts.add(new JLabel("Select engine cm3: "));
+        texts.add(new JLabel("Put car production year: "));
 
         for(JLabel txt : texts) {
             txt.setForeground(Color.WHITE);
@@ -55,6 +70,7 @@ public class FormGUI extends JPanel {
             box.setSelectedIndex(-1);
             box.setPreferredSize(new Dimension(200,20));
         }
+        prod.setPreferredSize(new Dimension(200,20));
 
         button.setPreferredSize(new Dimension(150,30));
         button.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
@@ -159,6 +175,7 @@ public class FormGUI extends JPanel {
                     MyGUI.c.carModel = data.get(1);
                     MyGUI.c.carGeneration = data.get(2);
                     MyGUI.c.carType = data.get(3);
+                    MyGUI.c.carProdYear = prod.getText();
                     String s = data.get(4);
                     if(s != null) {
                         s = s.replaceAll("\\s.*", "");

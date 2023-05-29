@@ -13,7 +13,7 @@ public class MyGUI {
     public static FormGUI form = new FormGUI();
     public static PersonalGUI form1 = new PersonalGUI();
     public static AdditionalCarInfo form2 = new AdditionalCarInfo();
-    public static Result form3 = new Result();
+    public static Result form3;
     public static JFrame frame = new JFrame();
     public static JPanel panel = new JPanel();
     public static calculator c = new calculator();

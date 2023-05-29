@@ -88,9 +88,8 @@ public class PersonalGUI extends JPanel {
                 String nameinput = name.getText();
                 if (birthinput.length() > 0) {
                     System.out.println("Alles klar with date " + birthinput);
-                    calculator.dateOfBirth = dateTextField.getText();
+                    MyGUI.c.dateOfBirth = birthinput;
                 }
-                MyGUI.c.dateOfBirth = birthinput;
                 MyGUI.c.city = cityinput;
                 MyGUI.c.zipCode = zipinput;
                 MyGUI.c.surname = surnameinput;
