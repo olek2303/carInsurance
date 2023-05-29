@@ -82,6 +82,8 @@ public class FormGUI extends JPanel {
             add(texts.get(i));
             add(boxes.get(i), BorderLayout.EAST);
         }
+        add(texts.get(texts.size()-1));
+        add(prod);
         add(Box.createRigidArea(new Dimension(1000,5)));
         add(button, BorderLayout.EAST);
 
