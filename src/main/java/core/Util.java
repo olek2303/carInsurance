@@ -1,9 +1,9 @@
 package core;
 
-public class Util {
-    public static float Sigmoid (float val) { return (float) (1/(1+Math.pow(Math.E, -val))); }
+public class Util { // klasa posiada wszystkie funkcje do wykonania potrzebnych obliczen
+    public static float Sigmoid (float val) { return (float) (1/(1+Math.pow(Math.E, -val))); } // funkcja aktywacyjna
     public static float SigmoidDerviative(float val) { return Sigmoid(val)*(1-Sigmoid(val)); }
-    public static float Tanh(float val) {
+    public static float Tanh(float val) { // inna funkcja aktywacyjna - niewykorzystana w projekcie
         return (float) (((Math.pow(Math.E, val)) - Math.pow(Math.E, -val)) / ((Math.pow(Math.E, val)) + Math.pow(Math.E, -val)));
     }
     public static float ReLU(float val) { return Float.max(0, val);}

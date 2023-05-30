@@ -1,6 +1,6 @@
 package core;
 
-public class Neuron {
+public class Neuron { // klasa pojedyneczego neuronu
     static float minWeightValue;
     static float maxWeightValue;
     float[] weights;

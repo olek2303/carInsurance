@@ -2,7 +2,7 @@ package core;
 
 import java.util.Date;
 
-public class calculator {
+public class calculator { // w tej klasie zbierane sa wszystkie informacje w roznych typach danych prosto z formularzy GUI
     public static String name = null;
     public static String surname = null;
     public static String dateOfBirth = " 20 "; // drivers date of birth

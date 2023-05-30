@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-public class Layer {
+public class Layer { // klasa jednej warstwy sieci neuronowej, zawiera zbior neuronow
     public Neuron[] neurons;
 
     public Layer(int inNeurons, int numberNeurons) {

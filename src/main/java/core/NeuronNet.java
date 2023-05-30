@@ -14,7 +14,7 @@ public class NeuronNet {
         System.out.println(predict(c));
     }
 
-    public static void CreateTrainingData() {
+    public static void CreateTrainingData() { // tworzenie listy prawdopodnych konfiguracji danych oraz oczekiwanego wyjscia
         /*      ZNIZKI (bez szkody)
         >=8 lat         -60% (0.4)
         >=7 and < 8     -55% (0.45)
@@ -90,21 +90,9 @@ public class NeuronNet {
         tDataSet[17] = new carDataConverted(in18, ex18);
         tDataSet[18] = new carDataConverted(in19, ex19);
         tDataSet[19] = new carDataConverted(in20, ex20);
-        carDataConverted cx1 = new carDataConverted(new carData(25, 2, 1, "coupe", "audi", "coupe", "3", 1999,
-                2.0f, 200000, 20000, "outdoor", 7, 6));
-        carDataConverted cx2 = new carDataConverted(new carData(30, 1, 1, "sedan", "audi", "a6", "3", 2020,
-                5.0f, 20000, 10000, "indoor", 10, 9));
-        carDataConverted cx3 = new carDataConverted(new carData(20, 1, 0, "hatchback", "skoda", "fabia", "1", 2006,
-                1.2f, 200000, 20000, "outdoor", 2, 2));
-        carDataConverted cx4 = new carDataConverted(new carData(40, 2, 1, "kombi", "volvo", "v50", "-", 2012,
-                5.0f, 150000, 25000, "outdoor", 20, 15));
-        carDataConverted cx5 = new carDataConverted(new carData(20, 1, 0, "hatchback", "mazda", "mx-5", "3", 2020,
-                2.0f, 15000, 25000, "outdoor", 0, 0));
-        carDataConverted cx6 = new carDataConverted(new carData(50, 1, 1, "sedan", "skoda", "superb", "4", 2019,
-                2.0f, 20000, 25000, "indoor", 20, 18));
     }
 
-    public static void forward(float[] inputs) {
+    public static void forward(float[] inputs) { // forward propagation
         layers[0] = new Layer(inputs);
         for(int i = 1; i < layers.length; i++) {
             for(int j = 0; j < layers[i].neurons.length; j++) {
@@ -118,7 +106,7 @@ public class NeuronNet {
         }
     }
 
-    public static void backward(float learningRate, carDataConverted tData, int forDataEx) {
+    public static void backward(float learningRate, carDataConverted tData, int forDataEx) { // backward propagation
         int numberLayers = layers.length;
         int outIndex = numberLayers - 1;
 
@@ -167,7 +155,7 @@ public class NeuronNet {
         return gradientSum;
     }
 
-    public static void train(int trainIter, float learningRate) {
+    public static void train(int trainIter, float learningRate) { // metoda trenujaca siec neuronowa
         for(int i = 0; i < trainIter; i++) {
             for(int j = 0; j < tDataSet.length; j++) {
                 forward(tDataSet[j].data);
@@ -176,7 +164,7 @@ public class NeuronNet {
         }
     }
 
-    public static float count(carDataConverted c) {
+    public static float count(carDataConverted c) { //wyliczenie skladki ubezpieczenia
         float[] out = new float[6];
         for(int j = 0; j < layers[2].neurons.length; j++) {
             for (int i = 0; i < c.data.length; i++) {

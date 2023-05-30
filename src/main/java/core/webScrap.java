@@ -8,7 +8,7 @@ import java.util.Vector;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.*;
 
-public class webScrap {
+public class webScrap { // klasa pobierajaca dane ze strony http://auto-centrum.pl/
     public static void main(String[] args) throws IOException {
         Vector<String> b = getGenerations("audi", "a3");
         Vector<String> b2 = getType("audi", "a3", "8l");

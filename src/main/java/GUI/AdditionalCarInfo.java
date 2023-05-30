@@ -14,7 +14,7 @@ import java.util.Vector;
 
 import static java.awt.Font.*;
 
-public class AdditionalCarInfo extends JPanel {
+public class AdditionalCarInfo extends JPanel { //klasa zbierajaca dodatkowe informacje dotyczace auta oraz kierowcy, w celu poprawnego wyliczenia skladki
     private NumberFormat format = NumberFormat.getInstance();
     private NumberFormatter formatter = new NumberFormatter(format);
     JFormattedTextField field = new JFormattedTextField(formatter);
@@ -22,7 +22,7 @@ public class AdditionalCarInfo extends JPanel {
     private JToggleButton OCAC = new JToggleButton("Select OCAC (default OC): ");
     private List<JFormattedTextField> intCollector = new Vector<>();
     private List<JLabel> labels = new Vector<>();
-    private JComboBox<String> parking = new JComboBox<>();
+    private JComboBox<String> parking = new JComboBox<>(); //samochod parkowany na zewnątrz/wewnątrz(garaż)
     private JButton button = new JButton("Confirm");
 
     public AdditionalCarInfo() {

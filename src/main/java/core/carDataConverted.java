@@ -7,8 +7,8 @@ import java.util.Map;
 import static core.carData.changeStrings;
 
 public class carDataConverted {
-    float[] data;
-    float[] expectedOut;
+    float[] data; // dane dotyczace jednego samochodu oraz wlasciciela przekonwertowane do postaci flaot
+    float[] expectedOut; // oczekiwana cena ubezpieczenia dla danej listy danych DATA
 
     public carDataConverted(carData c) {
         changeStrings(c);

@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-public class carData {
+public class carData { // klasa posiada wszystkie konieczne pola, do poprawnego obliczenia wysokosci skladki ubezpieczenia ocac
     public static float age;
     public static float amountOfDrivers;
     public static float ocac;
@@ -37,7 +37,7 @@ public class carData {
         return counter;
     }
 
-    public static void presentAttr(carData c) {
+    public static void presentAttr(carData c) { // metoda służąca wyświetleniu pol klasy carData - czyli wszystkich potrzebnych pol do obliczenia wysokosci skladki ubezpieczenia
         Field[] fields = c.getClass().getDeclaredFields();
         System.out.printf("%d fields:%n", fields.length);
         for (Field field : fields) {
@@ -53,7 +53,7 @@ public class carData {
         }
     }
 
-    public static void changeStrings(carData c) {
+    public static void changeStrings(carData c) { // dane typu string zamieniane na odpowiednie floaty
         Class<?> x = c.getClass();
         Field[] fields = x.getDeclaredFields();
         Map<String, Object> temp = new HashMap<String, Object>();
