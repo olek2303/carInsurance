@@ -82,6 +82,7 @@ public class FormGUI extends JPanel { //klasa zawiera w sobie elementy z bibliot
             add(texts.get(i));
             add(boxes.get(i), BorderLayout.EAST);
         }
+        add(Box.createRigidArea(new Dimension(1000,10)));
         add(texts.get(texts.size()-1));
         add(prod);
         add(Box.createRigidArea(new Dimension(1000,5)));

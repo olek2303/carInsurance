@@ -27,7 +27,32 @@ public class carData { // klasa posiada wszystkie konieczne pola, do poprawnego 
     public static float yearsOfLastAccident; // 4
 
     public static void main(String[] args) {
-        carData c = new carData(MyGUI.c);
+        calculator cal = new calculator();
+        cal.surname = "myLoginT";
+        cal.dateOfBirth = "1995.03.23";
+        cal.zipCode = "03-980";
+        cal.city = "Warsaw";
+        cal.maleFemale = true;
+        cal.amountOfDrivers = 1;
+        cal.OCAC = true;
+        cal.login = "myLoginT";
+        cal.carType = "sedan";
+        cal.carBrand = "audi";
+        cal.carModel = "a3";
+        cal.serialNumber = null;
+        cal.carGeneration = "3";
+        cal.carProdYear = "2020";
+        cal.gasDesiel = true; //gas
+        cal.engineCapacity = 3.3f;
+        cal.amountOfDoors = 5;
+        cal.counterStatus = 200000;
+        cal.kmInYear = 20000;
+        cal.wherePark = "indoor";
+        cal.yearOfOwnership = 2;
+        cal.yearsClientOC = 2;
+        cal.yearOfAccident = 2;
+        carData c = new carData(cal);
+        //carData c = new carData(MyGUI.c);
     }
 
     public static int countAttr(carData c) {
@@ -171,12 +196,13 @@ public class carData { // klasa posiada wszystkie konieczne pola, do poprawnego 
     }
 
     public carData(calculator c) {
-        c.dateOfBirth = c.dateOfBirth.split(".")[0];
+        String[] yearBirth = c.dateOfBirth.split("\\.");
+        System.out.println(yearBirth[0]);
         int year = 2023;
 
-        System.out.println("Year: " + year + " date of birth: " + c.dateOfBirth + " division: ");
+        System.out.println("Year: " + year + " date of birth: " + c.dateOfBirth);
 
-        this.age = Float.parseFloat(c.dateOfBirth) - (float) year;
+        this.age = Float.parseFloat(yearBirth[0]) - (float) year;
         this.amountOfDrivers = c.amountOfDrivers;
         if(c.OCAC)
             this.ocac = 1.0f;
