@@ -1,10 +1,13 @@
 package core;
 
+import java.security.KeyPair;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NeuronNet {
-    static Layer[] layers;
+    public static Layer[] layers;
     static carDataConverted[] tDataSet;
 
     public static void main(String[] args) {
@@ -164,7 +167,7 @@ public class NeuronNet {
         }
     }
 
-    public static float count(carDataConverted c) { //wyliczenie skladki ubezpieczenia
+    public static int count(carDataConverted c) { //wyliczenie skladki ubezpieczenia
         float[] out = new float[6];
         for(int j = 0; j < layers[2].neurons.length; j++) {
             for (int i = 0; i < c.data.length; i++) {
@@ -215,7 +218,7 @@ public class NeuronNet {
                 break;
         }
 
-        return max;
+        return i;
     }
 
     public static float predict(carDataConverted c) {

@@ -7,6 +7,8 @@ import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -53,7 +55,7 @@ public class FormGUI extends JPanel { //klasa zawiera w sobie elementy z bibliot
         boxes.add(new JComboBox()); //engines
         DefaultComboBoxModel cmbxEng = (DefaultComboBoxModel) boxes.get(4).getModel();
 
-        JFormattedTextField prod = new JFormattedTextField(formatter);
+        JTextField prod = new JTextField();
 
         texts.add(new JLabel("Select brand: "));
         texts.add(new JLabel("Select model: "));
@@ -87,6 +89,19 @@ public class FormGUI extends JPanel { //klasa zawiera w sobie elementy z bibliot
         add(prod);
         add(Box.createRigidArea(new Dimension(1000,5)));
         add(button, BorderLayout.EAST);
+
+        prod.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent ke) {
+                String value = prod.getText();
+                int l = value.length();
+                if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
+                    prod.setEditable(true);
+                } else {
+                    prod.setEditable(false);
+                    prod.setText("");
+                }
+            }
+        });
 
         boxes.get(0).addActionListener(new ActionListener() { //pobieranie danych dot. modelu wybranego samochodu ze strony https://auto-centrum.pl/
             public void actionPerformed(ActionEvent e) {
@@ -163,6 +178,7 @@ public class FormGUI extends JPanel { //klasa zawiera w sobie elementy z bibliot
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 boolean completed = true;
+                boolean validProd = true;
                 ArrayList<String> data = new ArrayList<String>(); // lista do zebrania danych z pol typu JComboBox
                 for(JComboBox box : boxes) { //sprawdzanie poprawnosci wybranych konfiguracji
                     if(box.getSelectedIndex() == -1) {
@@ -173,12 +189,22 @@ public class FormGUI extends JPanel { //klasa zawiera w sobie elementy z bibliot
                         data.add((String) box.getSelectedItem());
                     }
                 }
-                if (completed) { // przekierowywanie podanych informacji do pliku ze wszystkimi danymi
+                String yearProd = prod.getText();
+                for(int i = 0; i < yearProd.length(); i++) {
+                    if(!Character.isDigit(yearProd.charAt(i))) {
+                        JOptionPane.showMessageDialog(getComponent(0), "Paste only numbers");
+                        prod.setText("");
+                        validProd = false;
+                        break;
+                    }
+                }
+                if (completed && validProd) { // przekierowywanie podanych informacji do pliku ze wszystkimi danymi
                     MyGUI.c.carBrand = data.get(0);
                     MyGUI.c.carModel = data.get(1);
                     MyGUI.c.carGeneration = data.get(2);
                     MyGUI.c.carType = data.get(3);
-                    MyGUI.c.carProdYear = prod.getText();
+                    System.out.println("YEAR PROD: " + yearProd);
+                    MyGUI.c.carProdYear = yearProd;
                     String s = data.get(4);
                     if(s != null) {
                         s = s.replaceAll("\\s.*", "");

@@ -44,9 +44,6 @@ public class AdditionalCarInfo extends JPanel { //klasa zbierajaca dodatkowe inf
         for(int i = 0; i < labels.size(); i++) {
             intCollector.add(new JFormattedTextField(formatter));
         }
-        JLabel text = new JLabel("Additional Data About Car");
-        text.setForeground(Color.WHITE);
-        text.setFont(new Font(SANS_SERIF, BOLD, 32));
         add(Box.createRigidArea(new Dimension(1000,10)));
         add(text);
         add(Box.createRigidArea(new Dimension(1000,10)));
