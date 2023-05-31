@@ -109,13 +109,13 @@ public class NeuronNet {
         }
     }
 
-    public static void backward(float learningRate, carDataConverted tData, int forDataEx) { // backward propagation
+    public static void backward(float learningRate, carDataConverted tData) { // backward propagation
         int numberLayers = layers.length;
         int outIndex = numberLayers - 1;
 
         for(int i = 0; i < layers[outIndex].neurons.length; i++) {
             float output = layers[outIndex].neurons[i].value;
-            float target = tData.expectedOut[forDataEx];
+            float target = tData.expectedOut[0];
             float derivative = output - target;
             float delta = derivative * (output * (1 - output));
             layers[outIndex].neurons[i].gradient = delta;
@@ -162,7 +162,7 @@ public class NeuronNet {
         for(int i = 0; i < trainIter; i++) {
             for(int j = 0; j < tDataSet.length; j++) {
                 forward(tDataSet[j].data);
-                backward(learningRate, tDataSet[j], 0);
+                backward(learningRate, tDataSet[j]);
             }
         }
     }

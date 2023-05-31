@@ -20,6 +20,7 @@ public class Result extends JPanel {
         carData c1 = new carData(MyGUI.c);
         carDataConverted cx1 = new carDataConverted(c1);
         int countResult = App.net.count(cx1);
+        setBackground(Color.BLACK);
         switch(countResult) {
             case 0:
                 res = new JLabel("Price is in bounds of (0, 900)");

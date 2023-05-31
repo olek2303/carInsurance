@@ -26,7 +26,7 @@ public class App { //klasa uruchamia aplikacje
                     net.layers[1] = new Layer(14,42);
                     net.layers[2] = new Layer(42,6);
                     net.CreateTrainingData();
-                    net.train(1000000, 0.001f);
+                    net.train(1000000, 0.01f);
                 });
                 newThread.start();
             }
