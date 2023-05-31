@@ -62,8 +62,8 @@ public class AdditionalCarInfo extends JPanel { //klasa zbierajaca dodatkowe inf
         }
 
         add(Box.createRigidArea(new Dimension(1000,10)));
-        parking.addItem("Outdoor");
-        parking.addItem("Indoor");
+        parking.addItem("outdoor");
+        parking.addItem("indoor");
         parking.setSelectedIndex(-1);
         JLabel t = new JLabel("Where the car parks: ");
         t.setForeground(Color.WHITE);
