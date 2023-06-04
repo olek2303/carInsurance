@@ -141,9 +141,9 @@ public class carData { // klasa posiada wszystkie konieczne pola, do poprawnego 
                 }
             }
         }
-        if(yearsOfOC < 10) yearsOfOC /= 10;
+        if(yearsOfOC < 10) yearsOfOC /= 100;
         else yearsOfOC /= 100;
-        if(yearsOfLastAccident < 10) yearsOfLastAccident /= 10;
+        if(yearsOfLastAccident < 10) yearsOfLastAccident /= 100;
         else yearsOfLastAccident /= 100;
         amountOfDrivers /= 10;
         age /= 100;
@@ -202,7 +202,7 @@ public class carData { // klasa posiada wszystkie konieczne pola, do poprawnego 
 
         System.out.println("Year: " + year + " date of birth: " + c.dateOfBirth);
 
-        this.age = Float.parseFloat(yearBirth[0]) - (float) year;
+        this.age = (float) year - Float.parseFloat(yearBirth[0]);
         this.amountOfDrivers = c.amountOfDrivers;
         if(c.OCAC)
             this.ocac = 1.0f;

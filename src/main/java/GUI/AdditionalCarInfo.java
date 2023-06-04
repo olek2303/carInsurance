@@ -19,7 +19,7 @@ public class AdditionalCarInfo extends JPanel { //klasa zbierajaca dodatkowe inf
     private NumberFormatter formatter = new NumberFormatter(format);
     JFormattedTextField field = new JFormattedTextField(formatter);
     private JLabel text = new JLabel("Additional Data About Car:");
-    private JToggleButton OCAC = new JToggleButton("Select OCAC (default OC): ");
+    private JToggleButton OCACswitch = new JToggleButton("Select OCAC (default OC): ");
     private List<JFormattedTextField> intCollector = new Vector<>();
     private List<JLabel> labels = new Vector<>();
     private JComboBox<String> parking = new JComboBox<>(); //samochod parkowany na zewnątrz/wewnątrz(garaż)
@@ -47,7 +47,7 @@ public class AdditionalCarInfo extends JPanel { //klasa zbierajaca dodatkowe inf
         add(Box.createRigidArea(new Dimension(1000,10)));
         add(text);
         add(Box.createRigidArea(new Dimension(1000,10)));
-        add(OCAC);
+        add(OCACswitch);
         for(JLabel txt : labels) {
             txt.setForeground(Color.WHITE);
             txt.setFont(new Font(MONOSPACED, PLAIN, 16));
@@ -87,13 +87,14 @@ public class AdditionalCarInfo extends JPanel { //klasa zbierajaca dodatkowe inf
                 for (JFormattedTextField i : intCollector) {
                     coll.add((int) i.getValue());
                 }
-                boolean oc = OCAC.isSelected(); // true - oc & ac, false - only oc
+                boolean oc = OCACswitch.isSelected(); // true - oc & ac, false - only oc
                 MyGUI.c.amountOfDoors = coll.get(0);
                 MyGUI.c.counterStatus = coll.get(1);
                 MyGUI.c.kmInYear = coll.get(2);
                 MyGUI.c.yearOfOwnership = coll.get(3);
                 MyGUI.c.yearsClientOC = coll.get(4);
-                MyGUI.c.yearOfOwnership = coll.get(5);
+                MyGUI.c.yearOfAccident = coll.get(5);
+                MyGUI.c.OCAC = oc;
                 if(parking.getSelectedIndex() != -1)
                     calculator.wherePark = (String) parking.getSelectedItem();
                 else
