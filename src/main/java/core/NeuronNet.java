@@ -28,7 +28,22 @@ public class NeuronNet {
         >=2 and < 3     -20% (0.8)
         >=1 and < 2     -10% (0.9)
         */
-
+        /*
+            age
+            amountOfDrivers
+            ocac
+            carType // suv, hatchback, sedan, kombi
+            carBrand // audi, bmw, citroen, skoda
+            carModel //a5, seria 5, c3
+            carGen // 1-gen, 2-gen
+            carProdYear // 2012, 2006
+            engineCap // 2.0, 1.2, 5.0
+            counterStatus // 200 000, 150 000, 70 000
+            kmInYear // 20 000, 30 000
+            wherePark // indoor outdoor
+            yearsOfOC // 5
+            yearsOfLastAccident // 4
+        */
         tDataSet = new carDataConverted[20];
         float in1[] = new float[] {0.25f, 0.2f, 1.0f, 0.6f, 0.9f, 0.4f, 0.2f, 0.1999f, 0.2f, 0.2f, 0.2f, 0.9f, 0.07f, 0.5f};
         float in2[] = new float[] {0.30f, 0.1f, 1.0f, 0.8f, 0.9f, 0.9f, 0.7f, 0.2020f, 0.5f, 0.2f, 0.1f, 0.5f, 0.10f, 0.4f};

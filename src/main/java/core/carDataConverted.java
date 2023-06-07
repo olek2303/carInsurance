@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static core.carData.changeStrings;
+import static core.carData.yearsOfLastAccident;
 
 public class carDataConverted {
     float[] data; // dane dotyczace jednego samochodu oraz wlasciciela przekonwertowane do postaci flaot
@@ -28,7 +29,9 @@ public class carDataConverted {
             if (i == 14) break;
             if (set.getValue() instanceof String)
                 data[i] = Float.parseFloat((String) set.getValue());
-            else data[i] = (float) set.getValue();
+            else {
+                data[i] = (float) set.getValue();
+            }
             i++;
             System.out.println("added: " + set.getKey() + " and val " + set.getValue());
         }

@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-public class carData { // klasa posiada wszystkie konieczne pola, do poprawnego obliczenia wysokosci skladki ubezpieczenia ocac
+public class carData { // klasa posiada wszy5stkie konieczne pola, do poprawnego obliczenia wysokosci skladki ubezpieczenia ocac
     public static float age;
     public static float amountOfDrivers;
     public static float ocac;
@@ -143,8 +143,23 @@ public class carData { // klasa posiada wszystkie konieczne pola, do poprawnego 
         }
         if(yearsOfOC < 10) yearsOfOC /= 100;
         else yearsOfOC /= 100;
-        if(yearsOfLastAccident < 10) yearsOfLastAccident /= 100;
-        else yearsOfLastAccident /= 100;
+        if (yearsOfLastAccident >= 8)
+            yearsOfLastAccident = 0.4f;
+        else if (yearsOfLastAccident == 7)
+            yearsOfLastAccident = 0.45f;
+        else if (yearsOfLastAccident == 6)
+            yearsOfLastAccident = 0.5f;
+        else if (yearsOfLastAccident == 5)
+            yearsOfLastAccident = 0.6f;
+        else if (yearsOfLastAccident == 4)
+            yearsOfLastAccident = 0.7f;
+        else if (yearsOfLastAccident == 3)
+            yearsOfLastAccident = 0.75f;
+        else if (yearsOfLastAccident == 2)
+            yearsOfLastAccident = 0.8f;
+        else if (yearsOfLastAccident == 1)
+            yearsOfLastAccident = 0.9f;
+        else yearsOfLastAccident = 1.0f;
         amountOfDrivers /= 10;
         age /= 100;
         engineCap /= 10.0;
