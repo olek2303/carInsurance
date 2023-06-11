@@ -6,6 +6,7 @@ public class Neuron { // klasa pojedyneczego neuronu
     float[] weights;
     float[] cacheWeights;
     float gradient;
+    float cacheBias;
     float bias;
     float value = 0;
 
@@ -30,4 +31,5 @@ public class Neuron { // klasa pojedyneczego neuronu
     }
 
     public void updateWeight() { this.weights = this.cacheWeights; } // at the end of backprop
+    public void updateBias() { this.bias = this.cacheBias; } // at the end of backprop
 }

@@ -1,5 +1,8 @@
 package core;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.security.KeyPair;
 import java.util.Arrays;
 import java.util.Collections;
@@ -139,6 +142,7 @@ public class NeuronNet {
                 float error = delta * previousOutput;
                 layers[outIndex].neurons[i].cacheWeights[j] = layers[outIndex].neurons[i].weights[j] - learningRate * error;
             }
+            layers[outIndex].neurons[i].cacheBias -= learningRate * delta;
         }
 
         for(int i = outIndex - 1; i > 0; i--) {
@@ -152,12 +156,14 @@ public class NeuronNet {
                     float error = delta * previousOutput;
                     layers[i].neurons[j].cacheWeights[k] = layers[i].neurons[j].weights[k] - learningRate * error;
                 }
+                layers[i].neurons[j].cacheBias -= learningRate * delta;
             }
         }
 
         for(int i = 0; i < layers.length; i++) {
             for(int j = 0; j < layers[i].neurons.length; j++) {
                 layers[i].neurons[j].updateWeight();
+                layers[i].neurons[j].updateBias();
             }
         }
     }
@@ -184,16 +190,62 @@ public class NeuronNet {
 
     public static int count(carDataConverted c) { //wyliczenie skladki ubezpieczenia
         float[] out = new float[6];
-        for(int j = 0; j < layers[2].neurons.length; j++) {
-            for (int i = 0; i < c.data.length; i++) {
-                out[0] = out[0] + (c.data[i] * layers[2].neurons[0].weights[i]) + layers[2].neurons[0].bias;
-                out[1] = out[1] + (c.data[i] * layers[2].neurons[1].weights[i]) + layers[2].neurons[1].bias;
-                out[2] = out[2] + (c.data[i] * layers[2].neurons[2].weights[i]) + layers[2].neurons[2].bias;
-                out[3] = out[3] + (c.data[i] * layers[2].neurons[3].weights[i]) + layers[2].neurons[3].bias;
-                out[4] = out[4] + (c.data[i] * layers[2].neurons[4].weights[i]) + layers[2].neurons[4].bias;
-                out[5] = out[5] + (c.data[i] * layers[2].neurons[5].weights[i]) + layers[2].neurons[5].bias;
-            }
+
+        float[][] goodWeights = new float[6][];
+        goodWeights[0] = new float[]{0.7123149f, 2.4254904f, 0.34208757f, 1.838024f, 0.047983356f, 1.4891185f, 1.0498626f, -0.3902004f, 2.5760152f,
+                1.0553739f, 2.1143622f, 2.561384f, 1.010429f, 1.570311f};
+        goodWeights[1] = new float[]{1.3465598f, 1.3785527f, 1.6499888f, 1.5490109f, -0.28853834f, 1.6189553f, 2.030362f, 0.8074467f, 2.3712068f,
+                0.5661128f, 1.1013842f, 1.2016382f, 2.2252626f, 2.7071254f};
+        goodWeights[2] = new float[]{0.8160266f, 3.010734f, 0.70153606f, 0.8755456f, -0.054225963f, 0.80338126f, 2.1556592f, 0.9226434f, 1.4651897f,
+                -0.018350838f, 1.1460001f, 2.9478676f, 1.7734675f, 2.6590085f};
+        goodWeights[3] = new float[]{1.2701637f, 1.3885598f, 0.5926916f, 2.583758f, 0.8748194f, 1.0932416f, 1.649107f, -0.44750273f, 1.3489085f,
+                -0.20728168f, 2.4918265f, 2.1865585f, 0.893626f, 2.795366f};
+        goodWeights[4] = new float[]{0.7577526f, 1.40071f, 1.2083745f, 1.8444356f, -0.021540828f, 1.9544584f, 1.8668042f, 0.40488446f, 2.586721f,
+                1.2429404f, 1.7434229f, 2.1429083f, 0.98169804f, 1.5226511f};
+        goodWeights[5] = new float[]{1.2210298f, 1.8290845f, 0.9760645f, 2.1629224f, -0.3631694f, 1.9675884f, 1.7246698f, -0.48774132f, 1.91748f,
+                0.3555372f, 1.9601693f, 1.3090254f, 1.9552853f, 1.0846368f};
+
+        /*
+        for(int i = 0; i < c.data.length; i++) {
+            out[0] = out[0] + (c.data[i] * layers[2].neurons[0].weights[i]);
+            out[1] = out[1] + (c.data[i] * layers[2].neurons[1].weights[i]);
+            out[2] = out[2] + (c.data[i] * layers[2].neurons[2].weights[i]);
+            out[3] = out[3] + (c.data[i] * layers[2].neurons[3].weights[i]);
+            out[4] = out[4] + (c.data[i] * layers[2].neurons[4].weights[i]);
+            out[5] = out[5] + (c.data[i] * layers[2].neurons[5].weights[i]);
         }
+        */
+
+        for(int i = 0; i < c.data.length; i++) {
+            out[0] = out[0] + (c.data[i] * goodWeights[0][i]);
+            out[1] = out[1] + (c.data[i] * goodWeights[1][i]);
+            out[2] = out[2] + (c.data[i] * goodWeights[2][i]);
+            out[3] = out[3] + (c.data[i] * goodWeights[3][i]);
+            out[4] = out[4] + (c.data[i] * goodWeights[4][i]);
+            out[5] = out[5] + (c.data[i] * goodWeights[5][i]);
+        }
+
+        out[0] += layers[2].neurons[0].bias;
+        out[1] += layers[2].neurons[1].bias;
+        out[2] += layers[2].neurons[2].bias;
+        out[3] += layers[2].neurons[3].bias;
+        out[4] += layers[2].neurons[4].bias;
+        out[5] += layers[2].neurons[5].bias;
+
+        System.out.println("-----wagi------");
+        for(int i = 0; i < 6; i++) {
+            System.out.println("Neuron " + i);
+            for(int j = 0; j < layers[2].neurons[i].weights.length; j++) {
+                System.out.print(layers[2].neurons[i].weights[j] + "   ");
+            }
+            System.out.println("");
+        }
+
+        System.out.println("-----bias------");
+        for(int i = 0; i < layers[2].neurons.length; i++) {
+            System.out.println("bias dla " + i + " neurona: " + layers[2].neurons[i].bias);
+        }
+
         System.out.println("==Out==");
         for(int i = 0; i < out.length; i++) {
             System.out.println(out[i]);
@@ -240,8 +292,8 @@ public class NeuronNet {
         Neuron.setRangeWeight(-1,1);
         layers = new Layer[3];
         layers[0] = null;
-        layers[1] = new Layer(14,42);
-        layers[2] = new Layer(42,6);
+        layers[1] = new Layer(14,14);
+        layers[2] = new Layer(14,6);
 
         CreateTrainingData();
         System.out.println("======================");
@@ -256,7 +308,7 @@ public class NeuronNet {
             System.out.println("\n");
         }
 
-        train(1000000, 0.002f);
+        train(1000000, 0.01f);
 
         System.out.println("=====================");
         System.out.println("Output after training");
@@ -269,6 +321,7 @@ public class NeuronNet {
             }
             System.out.println("\n");
         }
+
         float cost = count(c);
         return cost;
     }
