@@ -214,6 +214,7 @@ public class NeuronNet {
             out[4] = out[4] + (c.data[i] * layers[2].neurons[4].weights[i]);
             out[5] = out[5] + (c.data[i] * layers[2].neurons[5].weights[i]);
         }
+
         */
 
         for(int i = 0; i < c.data.length; i++) {
@@ -224,6 +225,8 @@ public class NeuronNet {
             out[4] = out[4] + (c.data[i] * goodWeights[4][i]);
             out[5] = out[5] + (c.data[i] * goodWeights[5][i]);
         }
+
+
 
         out[0] += layers[2].neurons[0].bias;
         out[1] += layers[2].neurons[1].bias;
@@ -308,7 +311,7 @@ public class NeuronNet {
             System.out.println("\n");
         }
 
-        train(1000000, 0.01f);
+        train(1000000, 0.05f);
 
         System.out.println("=====================");
         System.out.println("Output after training");

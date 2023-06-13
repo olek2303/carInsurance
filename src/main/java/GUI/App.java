@@ -23,8 +23,8 @@ public class App { //klasa uruchamia aplikacje
                     Neuron.setRangeWeight(-1,1);
                     net.layers = new Layer[3];
                     net.layers[0] = null;
-                    net.layers[1] = new Layer(14,42);
-                    net.layers[2] = new Layer(42,6);
+                    net.layers[1] = new Layer(14,14);
+                    net.layers[2] = new Layer(14,6);
                     net.CreateTrainingData();
                     net.train(1000000, 0.01f);
                 });

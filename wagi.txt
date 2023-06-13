@@ -97,3 +97,25 @@ bias dla 2 neurona: 0.7723029
 bias dla 3 neurona: 0.10878456
 bias dla 4 neurona: -0.38234943
 bias dla 5 neurona: 0.9654592
+-albo-
+bias dla 0 neurona: 0.2768851
+bias dla 1 neurona: 0.94840926
+bias dla 2 neurona: 0.25660717
+bias dla 3 neurona: 0.97686815
+bias dla 4 neurona: 0.010232806
+bias dla 5 neurona: 0.98632336
+-albo-
+bias dla 0 neurona: -0.9976816
+bias dla 1 neurona: 0.41499186
+bias dla 2 neurona: 0.45207143
+bias dla 3 neurona: 0.3660767
+bias dla 4 neurona: 0.6993526
+bias dla 5 neurona: 0.77258575
+
+----------------sumowanie raz----------
+bias dla 0 neurona: -0.039102018
+bias dla 1 neurona: -0.12909204
+bias dla 2 neurona: -0.35645932
+bias dla 3 neurona: 0.3566401
+bias dla 4 neurona: -0.367221
+bias dla 5 neurona: 0.23068392
